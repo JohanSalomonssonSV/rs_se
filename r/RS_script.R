@@ -28,9 +28,12 @@ RS_df<-t |> select(description, name, perf_1m, perf_3m, perf_6m, perf_ytd, perf_
 
 readr::write_csv(RS_df,file=paste0("C:/Users/johan/Documents/github/rs_se/data/rs_se.csv"))
 
+library(git2r)
+
 git2r::add(path = c("r/RS_script.R", "data/rs_se.csv"),#"C:/Users/johan/Documents/github/rs_se"
            )
 git2r::commit(message = paste0("commit", Sys.time()))
+
 git2r::push(getwd(),
   credentials = git2r::cred_user_pass( username = "JohanSalomonssonSV",
                                  password = Sys.getenv("GH_PASS")  
@@ -39,9 +42,9 @@ git2r::push(getwd(),
   
 )
 
-repo <- git2r::repository("https://github.com/JohanSalomonssonSV/rs_se.git")
-
-git2r::config( user.name="JohanSalomonssonSV", user.email="johan.salomonsson88@gmail.com")
+# repo <- git2r::repository("https://github.com/JohanSalomonssonSV/rs_se.git")
+# 
+# git2r::config( user.name="JohanSalomonssonSV", user.email="johan.salomonsson88@gmail.com")
 
 
 
