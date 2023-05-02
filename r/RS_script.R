@@ -27,12 +27,13 @@ RS_df<-t |> select(description, name, perf_1m, perf_3m, perf_6m, perf_ytd, perf_
   score_function(perf_ytd) |>
   score_function(perf_y) |>
   select(stock, symbol=name,symbol_yf , starts_with("RS_")) |> 
-  arrange(-RS_perf_y)
+  arrange(-RS_perf_y) |> 
+  mutate(date=today())
 
 readr::write_csv(RS_df,file=paste0("C:/Users/johan/Documents/github/rs_se/data/rs_se.csv"))
 
 
-library(git2rdata)
+#library(git2rdata)
 
 # root <- "~/rs_se" 
 # write_vc(my_data, file = "rel_path/filename", root = root)
