@@ -31,9 +31,9 @@ readr::write_csv(RS_df,file=paste0("C:/Users/johan/Documents/github/rs_se/data/r
 git2r::add(path = c("r/RS_script.R", "data/rs_se.csv"),#"C:/Users/johan/Documents/github/rs_se"
            )
 git2r::commit(message = paste0("commit", Sys.time()))
-git2r::push("C:/Users/johan/Documents/github/rs_se",
-  credentials = cred_user_pass( username = Sys.getenv("GH_Name") 
-                                , password = Sys.getenv("GH_PASS")  
+git2r::push(getwd(),
+  credentials = git2r::cred_user_pass( username = "JohanSalomonssonSV",
+                                 password = Sys.getenv("GH_PASS")  
   )      
   
   
