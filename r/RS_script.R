@@ -11,11 +11,7 @@ score_function<-\(.,col){
       rank=row_number(),
       rank=round(rank/max(rank)*100,0)
     ) |> 
-    #deparse({{col}})
     rename("RS_{{col}}":=rank)
-  #rename(paste0(deparse(substitute({{col}})),"_rank"):=rank   )
-  #rename_with(~paste0({{col}}, "rank"), rank)
-  #rename(paste0("{{col}}","_rank"):="rank")
 }
 
 RS_df<-t |> select(description, name, perf_1m, perf_3m, perf_6m, perf_ytd, perf_y) |>
@@ -32,6 +28,10 @@ RS_df<-t |> select(description, name, perf_1m, perf_3m, perf_6m, perf_ytd, perf_
 
 readr::write_csv(RS_df,file=paste0("C:/Users/johan/Documents/github/rs_se/data/rs_se.csv"))
 
+git2r::add(path = "C:/Users/johan/Documents/github/rs_se")
+git2r::commit(message = paste0("commit", Sys.time()))
+
+git2r::push(path = "C:/Users/johan/Documents/github/rs_se")
 
 #library(git2rdata)
 
